@@ -106,22 +106,19 @@
 </style>
 </head>
 <body>
-<h2 style= "text-align:center">PRODUCTION INFORMATION</h2>   
-<a href="productionform.php">  <button class="button-3" role="button">
+<h2 style= "text-align:center">FARROW INFORMATION</h2>   
+<a href="farrow.php">  <button class="button-3" role="button">
   CREATE
 </button></a>
-<a href="catproduction.php">  <button class="button-3" role="button">
-  FILTER BY CATEGORY
-</button></a>
-<a href="sumproduction.php">  <button class="button-3" role="button">
-   SUM REPORT
+<a href="dateweaned.php">  <button class="button-3" role="button">
+  FILTER BY DATE WEANED
 </button></a>
 <a href="dashboard.php">  <button class="button-3" role="button">
   CLOSE
 </button></a>
 
 <form action="#" method="POST">
-<div class="form-group"><label >Filter by Date Recorded</label>
+<div class="form-group"><label >Filter by Farrowing date</label>
 </div>
 <div class="form-group">
     <select name="filterChoice" class="form-control" >
@@ -145,72 +142,80 @@
 <table   class="content-table">
 <thead>   
 <tr>
-<th>Production ID</th>
- <th>Livestock ID</th>
- <th>Category</th>
- <th>Milk Produced in Litres</th>
- <th>Date recorded</th>
+<th>Farrow ID</th>
+ <th>Piglets</th>
+ <th>Sow ID</th>
+ <th>Sire ID</th>
+ <th>Farrowing Date</th>
+ <th>Labor Induced</th>
+ <th>Farrowing Ease</th>
+ <th>Born Female</th>
+ <th>Born Male</th>
+ <th>Born Alive</th>
+ <th>Born Dead</th>
+ <th>Date Weaned</th>
+ <th>Number Weaned</th>
+ <th>Weight</th>
  <th>Update</th>
  <th>Delete</th>
- 
 </tr>
 </thead>
 <tbody>
 <tr>
  <?php
  if(!isset($_POST['choice'])){
-     $query="SELECT * FROM production";
+     $query="SELECT * FROM farrow";
      getData($query);
  }
  elseif(isset($_POST['choice'])){
 switch($_POST['filterChoice']){
     case "1":
-    $sql="SELECT * FROM production WHERE daterec > DATE_SUB(NOW(), INTERVAL 7 DAY) AND daterec <= CURDATE()
-    ORDER BY DAY(daterec)";
+    $sql="SELECT * FROM farrow WHERE farrowingdate > DATE_SUB(NOW(), INTERVAL 7 DAY) AND farrowingdate <= CURDATE()
+    ORDER BY DAY(farrowingdate)";
     getData($sql);
     break;
     case "2":
-        $sql="SELECT * FROM production WHERE daterec > DATE_SUB(NOW(), INTERVAL 28 DAY) AND daterec <= CURDATE()
-        ORDER BY DAY(daterec)";
+        $sql="SELECT * FROM farrow WHERE farrowingdate > DATE_SUB(NOW(), INTERVAL 28 DAY) AND farrowingdate <= CURDATE()
+        ORDER BY DAY(farrowingdate)";
         getData($sql);
         break;
         case "3":
-            $sql="SELECT * FROM production WHERE daterec > DATE_SUB(NOW(), INTERVAL 90 DAY) AND daterec <= CURDATE()
-            ORDER BY YEAR(daterec) ASC,MONTH(daterec) ASC,DAY(daterec) ASC";
+            $sql="SELECT * FROM farrow WHERE farrowingdate > DATE_SUB(NOW(), INTERVAL 90 DAY) AND farrowingdate <= CURDATE()
+            ORDER BY YEAR(farrowingdate) ASC,MONTH(farrowingdate) ASC,DAY(farrowingdate) ASC";
             getData($sql);
             break;
             case "4":
-                $sql="SELECT * FROM production WHERE daterec > DATE_SUB(NOW(), INTERVAL 365 DAY) AND daterec <= CURDATE()
-                ORDER BY YEAR(daterec) ASC,MONTH(daterec) ASC,DAY(daterec) ASC";
+                $sql="SELECT * FROM farrow WHERE farrowingdate > DATE_SUB(NOW(), INTERVAL 365 DAY) AND farrowingdate <= CURDATE()
+                ORDER BY YEAR(farrowingdate) ASC,MONTH(farrowingdate) ASC,DAY(farrowingdate) ASC";
                 getData($sql);
                 break;
                 case "5":
-                    $sql="SELECT * FROM production ORDER BY YEAR(daterec) ASC,MONTH(daterec) ASC,DAY(daterec) ASC";
+                    $sql="SELECT * FROM farrow ORDER BY YEAR(farrowingdate) ASC,MONTH(farrowingdate) ASC,DAY(farrowingdate) ASC";
                     getData($sql);
                     break;  
                     case "6":
-                        $sql="SELECT * FROM production WHERE YEAR(daterec)=YEAR(CURDATE())
-                        ORDER BY YEAR(daterec) ASC,MONTH(daterec) ASC,DAY(daterec) ASC";
+                        $sql="SELECT * FROM farrow WHERE YEAR(farrowingdate)=YEAR(CURDATE())
+                        ORDER BY YEAR(farrowingdate) ASC,MONTH(farrowingdate) ASC,DAY(farrowingdate) ASC";
                         getData($sql);
                         break; 
 
                     case "7":
-                        $sql="SELECT * FROM production WHERE YEAR(daterec)=YEAR(CURDATE())-1
-                        ORDER BY YEAR(daterec) ASC,MONTH(daterec) ASC,DAY(daterec) ASC";
+                        $sql="SELECT * FROM farrow WHERE YEAR(farrowingdate)=YEAR(CURDATE())-1
+                        ORDER BY YEAR(farrowingdate) ASC,MONTH(farrowingdate) ASC,DAY(farrowingdate) ASC";
                         getData($sql);
                         break; 
                         case "8":
-                            $sql="SELECT * FROM production WHERE MONTH(daterec)=MONTH(CURDATE()) AND YEAR(daterec)=YEAR(CURDATE())
-                            ORDER BY YEAR(daterec) ASC,MONTH(daterec) ASC,DAY(daterec) ASC";
+                            $sql="SELECT * FROM farrow WHERE MONTH(farrowingdate)=MONTH(CURDATE()) AND YEAR(farrowingdate)=YEAR(CURDATE())
+                            ORDER BY YEAR(farrowingdate) ASC,MONTH(farrowingdate) ASC,DAY(farrowingdate) ASC";
                             getData($sql);
                             break; 
     
                             case "9":
-                                $sql="SELECT * FROM production WHERE MONTH(daterec) = MONTH(DATE_ADD(Now(),INTERVAL 1 MONTH)) 
-                                ORDER BY DAY(daterec) ASC";
+                                $sql="SELECT * FROM farrow WHERE MONTH(farrowingdate) = MONTH(DATE_SUB(Now(),INTERVAL 1 MONTH)) 
+                                ORDER BY DAY(farrowingdate) ASC";
                                 getData($sql);
                                 break; 
-                                
+                              
 }}
 ?>
 <?php
@@ -219,30 +224,46 @@ $conn=new mysqli('localhost','michelle','Aduda@101','farmmanagementsystem');
 $result = mysqli_query($conn, $sql);
 if(mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_array($result)) {
+        $farrowid= $row["farrowid"];
+        $piglets= $row["piglets"];
+    $sowid= $row["sowid"];
+    $sireid= $row["sireid"];
+    $farrowingdate= $row["farrowingdate"];
     
+         $farrowingdate=strtotime($farrowingdate); 
+         $date=date("d/m/Y",$farrowingdate);
+    $induced= $row["induced"];
+    $ease= $row["ease"];
+    $female= $row["female"];
+    $male= $row["male"];
+    $alive= $row["alive"];
+    $dead= $row["dead"];
+    $dateweaned= $row["dateweaned"];
+    $noweaned= $row["noweaned"];
+    $weight= $row["weight"];
          
-        $productionid=$row['productionid'];  
-        $livestockid=$row['livestockid'];  
-         $category=$row['category']; 
-       $milkproduced= $row['milkproduced']; 
-       $daterec= $row['daterec']; 
-         $daterec=strtotime($daterec); 
-         $date=date("d/m/Y",$daterec);
-        
-    
     
             ?>
             
 <tr>
-          
-<td><?php echo $productionid; ?></td> 
-            <td><?php echo $livestockid; ?></td> 
-            <td><?php echo $category; ?></td> 
-            <td><?php echo $milkproduced; ?></td> 
+<td><?php echo $farrowid; ?></td> 
+            <td><?php echo $piglets; ?></td> 
+            <td><?php echo $sowid; ?></td> 
+            <td><?php echo $sireid; ?></td> 
             <td><?php echo $date; ?></td> 
-            <td><a href="produceupdate.php?id=<?php echo $row["productionid"]; ?>"><button class="button-3" >Update</button></a></td>
+            <td><?php echo $induced; ?></td>
+            <td><?php echo $ease; ?></td> 
+            <td><?php echo $female; ?></td> 
+            <td><?php echo $male; ?></td> 
+            <td><?php echo $alive; ?></td>
+            <td><?php echo $dead; ?></td> 
+            <td><?php echo $dateweaned; ?></td> 
+            <td><?php echo $noweaned; ?></td>
+            <td><?php echo $weight; ?></td>
 
-            <td><a href="deleteproduction.php?id=<?php echo $row["productionid"]; ?>"><button class="button-3" >Delete</button></a></td>
+            <td><a href="updatefarrow.php?id=<?php echo $row["farrowid"]; ?>"><button class="button-3" >Update</button></a></td>
+
+            <td><a href="deletefarrow.php?id=<?php echo $row["farrowid"]; ?>"><button class="button-3" >Delete</button></a></td>
 
             
             

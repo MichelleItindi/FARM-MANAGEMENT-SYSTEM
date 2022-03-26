@@ -7,9 +7,12 @@ include ('database.php');
 if( isset($_POST["submit"]) ) {
 
     $username= $_POST["username"];
+    //preventing  cross site scripting
+    $username=htmlspecialchars($username);
     $email= $_POST["email"];
     $mobile= $_POST["mobile"];
     $password=$_POST["password"];
+    
     // takes the string that has been input in the password field and turns it into a hash
     $hashedpassword= password_hash($password,PASSWORD_DEFAULT);
     //Query to check if the user already exists

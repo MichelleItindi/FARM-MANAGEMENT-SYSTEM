@@ -141,7 +141,7 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="treatment">
         <div class="form">
-    <form method="post" action="" >
+    <form method="post" action="" name="scheduleform">
         <div class='form-input'>
             <label id='name-label'>ID</label>
             <input type='text' id='id' name='id' placeholder='ID' class='form-input-size'  />
@@ -172,4 +172,55 @@ if (isset($_POST['submit'])) {
         
 <a href="filtertask.php"> <button class="button-17" role="button">Close</button></a>
 </body>
+<script>
+            function validate_scheduleform()
+            {
+            var id=document.scheduleform.id.value;
+            var task=document.scheduleform.task.value;
+            var duedate=document.scheduleform.duedate.value;
+            var assign=document.scheduleform.assign.value;
+            var description=document.scheduleform.description.value;
+           
+           
+            if(id==""){
+                alert("Please enter task id");
+                document.scheduleform.id.focus();
+                return false;
+            }
+            if(task==""){
+        alert("Please enter task");
+        document.scheduleform.task.focus();
+        return false;
+    }
+    if(assign==""){
+        alert("Please address");
+        document.scheduleform.assign.focus();
+        return false;
+    }
+    if(duedate.indexOf("-")==-1){
+    alert("date of birth must be entered and in the format yyyy-mm-dd");
+    document.scheduleform.duedate.focus();
+    return false;
+}
+if(comps[0].length<4 ||comps[1].length<1 || comps[2].length<1 ){
+    alert("date of birth must be in the format yyyy-mm-dd");
+    document.scheduleform.duedate.focus();
+    return false;  
+}
+
+if(isNaN(comps[0])||isNaN(comps[1])||isNaN(comps[2]) ){
+    alert("date compnents must be integers and in the format yyyy-mm-dd");
+    document.scheduleform.duedate.focus();
+    return false;
+
+}
+    if(description==""){
+        alert("Please describe task");
+        document.scheduleform.description.focus();
+        return false;
+    }
+    
+            }
+    </script>
+
 </html>

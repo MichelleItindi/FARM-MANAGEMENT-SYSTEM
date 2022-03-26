@@ -164,22 +164,22 @@
  elseif(isset($_POST['choice'])){
 switch($_POST['filterChoice']){
     case "1":
-    $sql="SELECT * FROM offspring WHERE duedate > DATE_SUB(NOW(), INTERVAL 7 DAY)
+    $sql="SELECT * FROM offspring WHERE duedate > DATE_SUB(NOW(), INTERVAL 7 DAY) AND duedate <= CURDATE()
     ORDER BY DAY(duedate)";
     getData($sql);
     break;
     case "2":
-        $sql="SELECT * FROM offspring WHERE duedate > DATE_SUB(NOW(), INTERVAL 28 DAY)
+        $sql="SELECT * FROM offspring WHERE duedate > DATE_SUB(NOW(), INTERVAL 28 DAY) AND duedate <= CURDATE()
         ORDER BY DAY(duedate)";
         getData($sql);
         break;
         case "3":
-            $sql="SELECT * FROM offspring WHERE duedate > DATE_SUB(NOW(), INTERVAL 90 DAY)
+            $sql="SELECT * FROM offspring WHERE duedate > DATE_SUB(NOW(), INTERVAL 90 DAY) AND duedate <= CURDATE()
             ORDER BY YEAR(duedate) ASC,MONTH(duedate) ASC,DAY(duedate) ASC";
             getData($sql);
             break;
             case "4":
-                $sql="SELECT * FROM offspring WHERE duedate > DATE_SUB(NOW(), INTERVAL 365 DAY)
+                $sql="SELECT * FROM offspring WHERE duedate > DATE_SUB(NOW(), INTERVAL 365 DAY) AND duedate <= CURDATE()
                 ORDER BY YEAR(duedate) ASC,MONTH(duedate) ASC,DAY(duedate) ASC";
                 getData($sql);
                 break;

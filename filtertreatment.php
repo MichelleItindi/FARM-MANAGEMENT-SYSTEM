@@ -170,22 +170,22 @@
  elseif(isset($_POST['choice'])){
 switch($_POST['filterChoice']){
     case "1":
-    $sql="SELECT * FROM treatment WHERE dateadmin > DATE_SUB(NOW(), INTERVAL 7 DAY)
+    $sql="SELECT * FROM treatment WHERE dateadmin > DATE_SUB(NOW(), INTERVAL 7 DAY) AND dateadmin <= CURDATE()
     ORDER BY DAY(dateadmin)";
     getData($sql);
     break;
     case "2":
-        $sql="SELECT * FROM treatment WHERE dateadmin > DATE_SUB(NOW(), INTERVAL 28 DAY)
+        $sql="SELECT * FROM treatment WHERE dateadmin > DATE_SUB(NOW(), INTERVAL 28 DAY)AND dateadmin <= CURDATE()
         ORDER BY DAY(dateadmin)";
         getData($sql);
         break;
         case "3":
-            $sql="SELECT * FROM treatment WHERE dateadmin > DATE_SUB(NOW(), INTERVAL 90 DAY)
+            $sql="SELECT * FROM treatment WHERE dateadmin > DATE_SUB(NOW(), INTERVAL 90 DAY)AND dateadmin <= CURDATE()
             ORDER BY YEAR(dateadmin) ASC,MONTH(dateadmin) ASC,DAY(dateadmin) ASC";
             getData($sql);
             break;
             case "4":
-                $sql="SELECT * FROM treatment WHERE dateadmin > DATE_SUB(NOW(), INTERVAL 365 DAY)
+                $sql="SELECT * FROM treatment WHERE dateadmin > DATE_SUB(NOW(), INTERVAL 365 DAY)AND dateadmin <= CURDATE()
                 ORDER BY YEAR(dateadmin) ASC,MONTH(dateadmin) ASC,DAY(dateadmin) ASC";
                 getData($sql);
                 break;

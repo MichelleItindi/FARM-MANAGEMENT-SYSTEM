@@ -226,7 +226,7 @@ main .insights > div.income span{
        
     <a href="filtertask.php"><span class="material-icons-sharp">
 schedule
-</span> <h3>Schedule Tasks</h3>
+</span> <h3>Task Manager</h3>
 </a>
 <a href="search.php"><span class="material-icons-sharp">
  search
@@ -260,6 +260,9 @@ pets
 add_box
 </span>
 <h3>Hereditary Lineage</h3></a>
+<a href="filterfarrow.php"><span class="material-icons-sharp">
+bar_chart
+</span><h3>Farrow Manager</h3>
 <a href="offspringtable.php"><span class="material-icons-sharp">
 bar_chart
 </span><h3>Graphs</h3>

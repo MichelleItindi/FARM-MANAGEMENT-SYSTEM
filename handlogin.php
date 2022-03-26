@@ -12,6 +12,12 @@ if( isset($_POST["submit"]) ) {
   $email= $_POST["email"];
   $password= $_POST["password"];
   
+  // preventing mysqli injection 
+$username=stripcslashes($username);
+$password=stripcslashes($password);
+$username=mysqli_real_escape_string($conn,$username);
+$password=mysqli_real_escape_string($conn,$password);
+
   //gets data from db and stores it in session variables. Then logs user in
 
   $query = "SELECT * FROM user WHERE username='$username' ";

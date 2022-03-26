@@ -98,7 +98,7 @@ echo $row[0];
 <?php
 include("database.php");
 
-$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 28 DAY) AND category='Cattle'";
+$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 7 DAY) AND category='Cattle'AND daterec <= CURDATE() ";
 $q = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($q);
 
@@ -109,7 +109,7 @@ echo $row[0];
 <?php
 include("database.php");
 
-$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 7 DAY) AND category='Goat'";
+$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 7 DAY) AND category='Goat'AND daterec <= CURDATE()";
 $q = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($q);
 
@@ -121,7 +121,7 @@ echo $row[0];
 <?php
 include("database.php");
 
-$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 28 DAY) AND category='Cattle'";
+$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 28 DAY) AND category='Cattle'AND daterec <= CURDATE()";
 $q = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($q);
 
@@ -133,7 +133,7 @@ echo  $row[0];
 <?php
 include("database.php");
 
-$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 28 DAY) AND category='Goat'";
+$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 28 DAY) AND category='Goat'AND daterec <= CURDATE()";
 $q = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($q);
 
@@ -144,7 +144,7 @@ echo  $row[0];
 <?php
 include("database.php");
 
-$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 90 DAY) AND category='Cattle'";
+$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 90 DAY) AND category='Cattle'AND daterec <= CURDATE()";
 $q = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($q);
 
@@ -156,7 +156,7 @@ echo $row[0];
 <?php
 include("database.php");
 
-$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 90 DAY) AND category='Goat'";
+$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 90 DAY) AND category='Goat'AND daterec <= CURDATE()";
 $q = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($q);
 
@@ -191,7 +191,7 @@ echo $row[0];
 <?php
 include("database.php");
 
-$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 365 DAY) AND category='Cattle'";
+$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 365 DAY) AND category='Cattle'AND daterec <= CURDATE()";
 $q = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($q);
 
@@ -202,7 +202,7 @@ echo  $row[0];
 <?php
 include("database.php");
 
-$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 365 DAY) AND category='Goat'";
+$sql = "SELECT sum(milkproduced) from production WHERE daterec > DATE_SUB(NOW(), INTERVAL 365 DAY) AND category='Goat'AND daterec <= CURDATE()";
 $q = mysqli_query($conn,$sql);
 $row = mysqli_fetch_array($q);
 

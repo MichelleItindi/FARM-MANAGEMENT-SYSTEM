@@ -9,6 +9,8 @@ $result = mysqli_query($conn, $query);
 if( isset($_POST["submit"]) ) {
 
     $username= $_POST["username"];
+    //preventing  cross site scripting
+    $username=htmlspecialchars($username);
     $email= $_POST["email"];
     $mobile= $_POST["mobile"];
     $password=$_POST["password"];
